@@ -1,11 +1,12 @@
 package com.digiteched.javadsa;
 
+import java.util.Iterator;
+
 import com.digiteched.javadsa.exceptions.FailedToDequeueFromEmptyQueueException;
 import com.digiteched.javadsa.interfaces.IDequeue;
-import com.digiteched.javadsa.utils.Factory;
 
-// TODO implement `IDequeue`
-public class LinkedDequeue<T> implements IDequeue<T> {
+
+public class LinkedDequeue<T> implements IDequeue<T>,Iterable<T> {
 
     private class LinkedNode {
 
@@ -37,6 +38,26 @@ public class LinkedDequeue<T> implements IDequeue<T> {
 
         public T data(){
             return data;
+        }
+
+    }
+
+    private class DataIterator implements Iterator<T>{
+
+        LinkedDequeue<T> dequeue;
+        DataIterator(LinkedDequeue<T> dequeue){
+            this.dequeue = dequeue;
+        }
+
+        @Override
+        public boolean hasNext() {
+           return dequeue.tail.previous != null;
+        }
+
+        @Override
+        public T next() {
+           T out = dequeue.removeLast();
+            return out;
         }
 
     }
@@ -112,5 +133,12 @@ public class LinkedDequeue<T> implements IDequeue<T> {
     public int size() {
         return count;
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new DataIterator(this);
+    }
+
+    
 
 }
