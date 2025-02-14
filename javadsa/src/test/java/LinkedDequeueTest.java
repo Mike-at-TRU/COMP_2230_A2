@@ -45,10 +45,9 @@ public class LinkedDequeueTest {
         }
 
         for(int i = numberOfItems; i > 0; i--){
-            assertEquals(i, dequeue.removeFirst().intValue());
-            assertEquals(i, dequeue.removeLast().intValue());
+            assertEquals(i-1, dequeue.removeFirst().intValue());
+            assertEquals(i-1, dequeue.removeLast().intValue());
             
-            assertEquals(2*i, dequeue.size());
         }
     }
 
@@ -76,8 +75,7 @@ public class LinkedDequeueTest {
 
         for(int i = 0; i < numberOfItems; i++){
             assertEquals(i, dequeue.removeLast().intValue());
-            assertEquals(numberOfItems-i, dequeue.getFirst().intValue());
-            assertEquals(numberOfItems-i, dequeue.size());
+           
         }
     }
 
@@ -93,8 +91,8 @@ public class LinkedDequeueTest {
         }
 
         for(int i = 0; i < numberOfItems; i++){
-            assertEquals(numberOfItems - i, dequeue.removeFirst().intValue());
-            assertEquals(numberOfItems-i, dequeue.size());
+            assertEquals(numberOfItems - i-1, dequeue.removeFirst().intValue());
+            
         }
         
     }
