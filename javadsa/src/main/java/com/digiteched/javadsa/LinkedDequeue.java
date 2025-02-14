@@ -1,6 +1,7 @@
 package com.digiteched.javadsa;
 
 import com.digiteched.javadsa.interfaces.IDequeue;
+import com.digiteched.javadsa.utils.Factory;
 
 // TODO implement `IDequeue`
 public class LinkedDequeue<T> implements IDequeue<T> {
@@ -42,13 +43,22 @@ public class LinkedDequeue<T> implements IDequeue<T> {
     private int count = 0;
     private LinkedNode head;
     private LinkedNode tail;
+     public LinkedDequeue() {
+
+
+    }
 
     @Override
     public void addFirst(T element) {
         if(count == 0){
             head = new LinkedNode(element);
             tail = head;
-        }else{}
+        }else{
+            LinkedNode newNode = new LinkedNode(element);
+            head.setPrevious(newNode);
+            newNode.setNext(head);
+            head = newNode;
+        }
         count++;
     }
 
@@ -69,7 +79,12 @@ public class LinkedDequeue<T> implements IDequeue<T> {
         tail = new LinkedNode(element);
         head = tail;
       }
-      else{}
+      else{
+        LinkedNode newNode = new LinkedNode(element);
+        tail.setNext(newNode);
+        newNode.setPrevious(tail);
+        tail = newNode;
+      }
       count++;
     }
 
