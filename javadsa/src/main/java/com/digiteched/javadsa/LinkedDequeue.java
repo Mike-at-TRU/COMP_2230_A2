@@ -5,7 +5,7 @@ import com.digiteched.javadsa.interfaces.IDequeue;
 // TODO implement `IDequeue`
 public class LinkedDequeue<T> implements IDequeue<T> {
 
-    private class LinkedNode<T> {
+    private class LinkedNode {
 
         private LinkedNode next;
         private LinkedNode previous;
@@ -45,14 +45,16 @@ public class LinkedDequeue<T> implements IDequeue<T> {
 
     @Override
     public void addFirst(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addFirst'");
+        if(count == 0){
+            head = new LinkedNode(element);
+            tail = head;
+        }else{}
+        count++;
     }
 
     @Override
     public T getFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFirst'");
+        return  head.data();
     }
 
     @Override
@@ -63,14 +65,17 @@ public class LinkedDequeue<T> implements IDequeue<T> {
 
     @Override
     public void addLast(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addLast'");
+      if(count == 0){
+        tail = new LinkedNode(element);
+        head = tail;
+      }
+      else{}
+      count++;
     }
 
     @Override
     public T getLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLast'");
+        return  tail.data();
     }
 
     @Override
