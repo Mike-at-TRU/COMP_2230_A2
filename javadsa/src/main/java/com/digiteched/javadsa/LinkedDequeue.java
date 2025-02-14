@@ -69,8 +69,9 @@ public class LinkedDequeue<T> implements IDequeue<T> {
 
     @Override
     public T removeFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFirst'");
+        LinkedNode out = head;
+        head = head.next();
+        return out.data();
     }
 
     @Override
@@ -95,8 +96,9 @@ public class LinkedDequeue<T> implements IDequeue<T> {
 
     @Override
     public T removeLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeLast'");
+        LinkedNode out = tail;
+        tail = tail.previous;
+        return out.data;
     }
 
     @Override
