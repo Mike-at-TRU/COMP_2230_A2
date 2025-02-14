@@ -1,5 +1,6 @@
 package com.digiteched.javadsa;
 
+import com.digiteched.javadsa.exceptions.FailedToDequeueFromEmptyQueueException;
 import com.digiteched.javadsa.interfaces.IDequeue;
 import com.digiteched.javadsa.utils.Factory;
 
@@ -69,6 +70,9 @@ public class LinkedDequeue<T> implements IDequeue<T> {
 
     @Override
     public T removeFirst() {
+        if(count ==0){
+            throw new FailedToDequeueFromEmptyQueueException();
+        }
         LinkedNode out = head;
         head = head.next();
         return out.data();
@@ -96,6 +100,9 @@ public class LinkedDequeue<T> implements IDequeue<T> {
 
     @Override
     public T removeLast() {
+        if(count ==0){
+            throw new FailedToDequeueFromEmptyQueueException();
+        }
         LinkedNode out = tail;
         tail = tail.previous;
         return out.data;
